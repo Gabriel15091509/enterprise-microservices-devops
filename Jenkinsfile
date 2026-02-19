@@ -7,7 +7,7 @@ pipeline {
         NAMESPACE = "enterprise"
         GIT_REPO = "https://github.com/Gabriel15091509/enterprise-microservices-devops.git"
         GIT_BRANCH = "main"
-        KUBECONFIG = "C:\\Users\\Prudent Gabriel\\.kube\\config"
+        KUBECONFIG = "\"C:\\Users\\Prudent Gabriel\\.kube\\config\""
     }
 
     stages {
