@@ -7,6 +7,7 @@ pipeline {
         NAMESPACE = "enterprise"
         GIT_REPO = "https://github.com/Gabriel15091509/enterprise-microservices-devops.git"
         GIT_BRANCH = "main"
+        KUBECONFIG = "C:\\Users\\Prudent Gabriel\\.kube\\config"
     }
 
     stages {
@@ -56,15 +57,15 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo "Déploiement Kubernetes..."
-                bat "kubectl apply -f k8s\\ -n %NAMESPACE%"
-
+                bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s\\ -n %NAMESPACE% --validate=false"
             }
         }
 
         stage('Verify Deployment') {
             steps {
-                bat "kubectl get pods -n %NAMESPACE%"
-                bat "kubectl get svc -n %NAMESPACE%"
+                bat "kubectl --kubeconfig=%KUBECONFIG% get pods -n %NAMESPACE%"
+                bat "kubectl --kubeconfig=%KUBECONFIG% get svc -n %NAMESPACE%"
+                bat "kubectl --kubeconfig=%KUBECONFIG% get ingress -n %NAMESPACE%"
             }
         }
     }
