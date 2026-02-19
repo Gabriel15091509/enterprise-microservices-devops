@@ -56,7 +56,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo "Déploiement Kubernetes..."
-                bat "kubectl apply -f k8s\\ -n %NAMESPACE% --validate=false"
+                bat "kubectl apply -f k8s\\ -n %NAMESPACE%"
 
             }
         }
