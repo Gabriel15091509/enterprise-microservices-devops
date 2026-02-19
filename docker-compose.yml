@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  auth-service:
+    build: ./services/auth-service
+    container_name: auth-service
+    ports:
+      - "3001:3001"
+    environment:
+      - JWT_SECRET=supersecret
+
+  product-service:
+    build: ./services/product-service
+    container_name: product-service
+    ports:
+      - "3002:3002"
+    environment:
+      - JWT_SECRET=supersecret
+
+  gateway-service:
+    build: ./services/gateway-service
+    container_name: gateway-service
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth-service
+      - product-service
